@@ -7,11 +7,11 @@ declare global {
     }
 }
 
+const authorizationApp = (): Promise<any> => window.System.import('@mfe/authorization');
+const simulationApp = (): Promise<any> => window.System.import('@mfe/simulation');
 
-const legacyApp = (): Promise<any> => window.System.import('@creditas/legacy');
-//
-// registerApplication('legacy', legacyApp, () => true);
-// getAppStatus('legacy');
+registerApplication('@mfe/authorization', authorizationApp, () => true);
+registerApplication('@mfe/simulation', simulationApp, () => true);
 
 start();
 serviceWorker.unregister();
