@@ -7,11 +7,17 @@ declare global {
     }
 }
 
-const authorizationApp = (): Promise<any> => window.System.import('@mfe/authorization');
-const simulationApp = (): Promise<any> => window.System.import('@mfe/simulation');
+Promise.all([
+    window.System.import('@mfe/authentication')
+]).then( modules => {
+    console.log(modules);
+});
 
-registerApplication('@mfe/authorization', authorizationApp, () => true);
-registerApplication('@mfe/simulation', simulationApp, () => true);
+const authenticationApp = (): Promise<any> => window.System.import('@mfe/authentication');
+// const simulationApp = (): Promise<any> => window.System.import('@mfe/simulation');
+
+registerApplication('@mfe/authentication', authenticationApp, () => true);
+getAppStatus('@mfe/authentication');
 
 start();
 serviceWorker.unregister();

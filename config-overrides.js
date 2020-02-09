@@ -12,5 +12,11 @@ module.exports = (config, env) => {
     //         },
     //     },
     // };
+    config.devServer = {
+        disableHostCheck: true,
+        allowedHosts: [
+            'localhost',
+        ]
+    };
     return config;
 };
