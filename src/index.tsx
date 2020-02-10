@@ -29,3 +29,5 @@ window.client.on(window.client.Event.SDK_READY, () => {
 
 start();
 serviceWorker.unregister();
+
+// https://buzz-sandbox.creditoo.com.br/api/
