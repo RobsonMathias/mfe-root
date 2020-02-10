@@ -22,8 +22,11 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "start": "react-app-rewired start --env=.env",
+    "start:staging": "react-app-rewired start --env=.env.staging",
+    "build": "react-app-rewired build --env=.env",
+    "build:staging": "react-app-rewired build --env=.env.staging",
+    "build:prod": "react-app-rewired build --env=.env.production",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
   },
@@ -42,5 +45,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "customize-cra": "^0.9.1"
+  }
 }

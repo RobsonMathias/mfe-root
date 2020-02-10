@@ -1,22 +1,24 @@
-module.exports = (config, env) => {
-    // config.devServer = {
-    //     disableHostCheck: true,
-    //     proxy: {
-    //         '/simulation/**': {
-    //             target: 'https://mfe-simulation.netlify.com',
-    //             pathRewrite: { '^/stimulation': '' },
-    //         },
-    //         '/authorization/**': {
-    //             target: 'https://mfe-authorization.netlify.com',
-    //             pathRewrite: { '^/authorization': '' },
-    //         },
-    //     },
-    // };
-    config.devServer = {
-        disableHostCheck: true,
-        allowedHosts: [
-            'localhost',
-        ]
-    };
-    return config;
+const { override } = require('customize-cra');
+
+module.exports = {
+    webpack: override(
+        (config) => {
+            return config;
+        },
+    ),
+
+    jest: config => {
+        return config;
+    },
+
+    devServer: configFunction => (proxy, allowedHost) => {
+        const config = configFunction(proxy, allowedHost);
+        config.disableHostCheck = true;
+        config.headers = { 'Access-Control-Allow-Origin': '*' };
+        return config;
+    },
+
+    paths: (paths, env) => {
+        return paths;
+    }
 };

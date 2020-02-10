@@ -10,41 +10,39 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
     <script type="systemjs-importmap">
     {
       "imports": {
-        "@mfe/authentication": "https://mfe-authentication.netlify.com/scripts/main.js"
+        "@mfe/authentication": "%REACT_APP_AUTHENTICATION%/scripts/main.js",
+        "@mfe/simulation": "%REACT_APP_SIMULATION%/scripts/main.js",
+        "@mfe/simulation/v0.0.1-beta": "%REACT_APP_SIMULATION_v0_0_1_beta%/scripts/main.js"
       }
     }
     </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+
+    <!-- Some polyfills to ensure we have promises. -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+    <!-- Split SDK loaded via CDN. -->
+    <script src="https://cdn.split.io/sdk/split-10.10.0.js"></script>
+    <script type="text/javascript">
+      (function() {
+        var factory = splitio({
+          core: {
+            authorizationKey: 'fsejd8s9hrnoe8h9sn1sqhu0uoagumhnho2i',
+            key: 'CUSTOMER_ID',
+            trafficType: 'User'
+          }
+        });
+        window.client = factory.client();
+      })();
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.1.1/system.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.1.1/extras/amd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.1.1/extras/named-exports.js"></script>
