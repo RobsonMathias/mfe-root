@@ -12,7 +12,6 @@ declare global {
 }
 
 const replaceVersion = (treatment: string, appUrl: any) => {
-    console.log(treatment, appUrl);
     if (treatment === 'master' || treatment === 'control') {
         return appUrl;
     } else {
@@ -23,7 +22,6 @@ const replaceVersion = (treatment: string, appUrl: any) => {
 
 
 window.client.on(window.client.Event.SDK_READY, () => {
-    console.log(window.client.Event.SDK_READY);
     const authenticationApp = (): Promise<any> => window.System.import(
         replaceVersion(
             window.client.getTreatment('mfe-authentication'),
