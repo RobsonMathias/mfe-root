@@ -11,20 +11,37 @@ declare global {
     }
 }
 
-const authenticationApp = (): Promise<any> => window.System.import('@mfe/authentication');
-const simulationApp = (): Promise<any> => window.System.import('@mfe/simulation');
-const simulationV1BetaApp = (): Promise<any> => window.System.import('@mfe/simulation/v0.0.1-beta');
+const replaceVersion = (treatment: string, appUrl: any) => {
+    console.log(treatment, appUrl);
+    if (treatment === 'master' || treatment === 'control') {
+        return appUrl;
+    } else {
+        const version = treatment.replace(/_/g, '.');
+        return appUrl.replace('://', `://${version}--`);
+    }
+};
+
 
 window.client.on(window.client.Event.SDK_READY, () => {
+    console.log(window.client.Event.SDK_READY);
+    const authenticationApp = (): Promise<any> => window.System.import(
+        replaceVersion(
+            window.client.getTreatment('mfe-authentication'),
+            process.env.REACT_APP_AUTHENTICATION
+        )
+    );
+    const simulationApp = (): Promise<any> => window.System.import(
+        replaceVersion(
+            window.client.getTreatment('mfe-simulation'),
+            process.env.REACT_APP_SIMULATION
+        )
+    );
+
     registerApplication('@mfe/authentication', authenticationApp, () => true);
 
-    registerApplication('@mfe/simulation', simulationApp, () =>
-        window.client.getTreatment('mfe-simulation') === 'default' && window.location.pathname.indexOf('/simulation') === 0);
+    registerApplication('@mfe/simulation', simulationApp,
+        () => window.location.pathname.indexOf('/simulation') === 0);
 
-    registerApplication('@mfe/simulation/v0.0.1-beta', simulationV1BetaApp, () => {
-        return window.client.getTreatment('mfe-simulation') === 'v0_0_1-beta' &&
-            window.location.pathname.indexOf('/simulation') === 0;
-    });
 }, () => console.error('MUST FIX!'));
 
 start();
