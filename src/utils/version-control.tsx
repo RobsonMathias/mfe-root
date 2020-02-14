@@ -1,9 +1,8 @@
 const replaceVersion = (treatment: string, appUrl: any) => {
-  if (treatment === 'master' || treatment === 'control') {
+  if (treatment === 'master' || treatment === 'control' || appUrl.indexOf('localhost') > -1) {
     return appUrl;
   } else {
-    const version = treatment.replace(/_/g, '.');
-    return appUrl.replace('://', `://${version}--`);
+    return appUrl.replace('://', `://${treatment}--`);
   }
 };
 
