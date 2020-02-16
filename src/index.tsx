@@ -3,6 +3,7 @@ import * as serviceWorker from './serviceWorker';
 import './index.css'
 import AuthenticationLib from './libs';
 import SimulationLib from './libs/simulation.lib';
+import replaceVersion from './utils';
 
 declare global {
     interface Window {
