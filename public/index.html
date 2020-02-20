@@ -24,9 +24,10 @@
       (function() {
         var factory = splitio({
           core: {
-            authorizationKey: 'fsejd8s9hrnoe8h9sn1sqhu0uoagumhnho2i',
-            key: 'CUSTOMER_ID',
-            trafficType: 'User'
+            production: true,
+            authorizationKey: '%REACT_APP_SPLIT_AUTHORIZATION_KEY%',
+            key: 'Key',
+            trafficType: 'user'
           }
         });
         window.client = factory.client();
