@@ -1,9 +1,8 @@
 import { registerApplication, start } from 'single-spa';
 import * as serviceWorker from './serviceWorker';
 import './index.css'
-import AuthenticationLib from './libs';
-import SimulationLib from './libs/simulation.lib';
 import {HttpRequest} from './utils/HttpRequest';
+import {AuthenticationAdapter, SimulationAdapter} from './adapters';
 
 declare global {
     interface Window {
@@ -15,10 +14,10 @@ declare global {
 }
 
 window.client.on(window.client.Event.SDK_READY, () => {
-    registerApplication('@mfe/authentication', AuthenticationLib, () => true, {
+    registerApplication('@mfe/authentication', AuthenticationAdapter, () => true, {
         httpRequest: new HttpRequest()
     });
-    registerApplication('@mfe/simulation', SimulationLib,
+    registerApplication('@mfe/simulation', SimulationAdapter,
         () => window.location.pathname.indexOf('/simulation') === 0);
 });
 
