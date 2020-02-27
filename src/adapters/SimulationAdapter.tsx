@@ -1,4 +1,4 @@
-import replaceVersion from '../utils';
+import {replaceVersion} from '../util';
 
 export const SimulationAdapter = (): Promise<any> => window.System.import(
   replaceVersion(

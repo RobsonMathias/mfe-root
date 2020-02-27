@@ -1,4 +1,4 @@
-import replaceVersion from '../utils';
+import {replaceVersion} from '../util';
 
 
 export const AuthenticationAdapter = (): Promise<any> => window.System.import(

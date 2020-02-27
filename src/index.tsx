@@ -1,8 +1,8 @@
 import { registerApplication, start } from 'single-spa';
 import * as serviceWorker from './serviceWorker';
 import './index.css'
-import {HttpRequest} from './utils/HttpRequest';
 import {AuthenticationAdapter, SimulationAdapter} from './adapters';
+import {HttpRequestFacadeService} from './facade-service';
 
 declare global {
     interface Window {
@@ -15,7 +15,7 @@ declare global {
 
 window.client.on(window.client.Event.SDK_READY, () => {
     registerApplication('@mfe/authentication', AuthenticationAdapter, () => true, {
-        httpRequest: new HttpRequest()
+        httpRequest: new HttpRequestFacadeService()
     });
     registerApplication('@mfe/simulation', SimulationAdapter,
         () => window.location.pathname.indexOf('/simulation') === 0);

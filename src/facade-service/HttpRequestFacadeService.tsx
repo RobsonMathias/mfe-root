@@ -1,4 +1,4 @@
-export class HttpRequest {
+export class HttpRequestFacadeService {
     public get(url: string, query: any): Promise<any> {
         console.log('GET REQUEST ------> ', url, query);
         return Promise.resolve();
