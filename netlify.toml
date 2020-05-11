@@ -5,6 +5,11 @@
     Access-Control-Allow-Origin = "*"
 
 [[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
   from = "/authentication"
   to = "https://mfe-authentication.netlify.app"
   status = 200
