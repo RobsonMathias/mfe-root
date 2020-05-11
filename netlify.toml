@@ -10,13 +10,7 @@
   status = 200
 
 [[redirects]]
-  status = 200
-  force = true
   from = "/authentication/*"
-  to = "/.netlify/functions/api/:splat"
-
-[[redirects]]
-  from = "/authentication/*"
-  to = "https://mfe-authentication.netlify.app"
+  to = "https://mfe-authentication.netlify.app/:splat"
   status = 200
   force = true
