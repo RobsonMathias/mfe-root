@@ -16,7 +16,7 @@
   to = "/.netlify/functions/api/:splat"
 
 [[redirects]]
-  from = "/authentication/scripts/main.js"
-  to = "https://mfe-authentication.netlify.app/authentication/scripts/main.js"
+  from = "/authentication/*"
+  to = "https://mfe-authentication.netlify.app"
   status = 200
   force = true
