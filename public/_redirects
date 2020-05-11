@@ -1,1 +1,1 @@
-/authentication/* http://mfe-authentication.netlify.app/:splat  301
+/authentication/scripts/main.js http://mfe-authentication.netlify.app/authentication/scripts/main.js  301
