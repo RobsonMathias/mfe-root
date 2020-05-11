@@ -1,1 +1,2 @@
+/v2-0-0/authentication/* https://v2-0-0--mfe-authentication.netlify.app/authentication/:splat  200!
 /authentication/* https://mfe-authentication.netlify.app/authentication/:splat  200!
