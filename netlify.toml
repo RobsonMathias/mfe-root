@@ -8,9 +8,3 @@
   from = "/*"
   to = "/index.html"
   status = 200
-
-[[redirects]]
-  from = "/authentication/*"
-  to = "https://mfe-authentication.netlify.app/:splat"
-  status = 200
-  force = true
