@@ -1,3 +1,2 @@
-/authentication/* http://mfe-authentication.netlify.app/:splat 301!
-/test/* https://upload.wikimedia.org/:splat 301!
+/authentication/* http://mfe-authentication.netlify.app/:splat 200!
 /* /index.html 200!
