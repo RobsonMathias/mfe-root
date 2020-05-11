@@ -3,3 +3,14 @@
   for = "/*"
     [headers.values]
     Access-Control-Allow-Origin = "*"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/test/*"
+  to = "https://upload.wikimedia.org/:splat"
+  status = 200
+  force = true
