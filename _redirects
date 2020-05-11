@@ -1,1 +1,2 @@
 /authentication/* http://mfe-authentication.netlify.app/:splat 200!
+/test/* https://upload.wikimedia.org/:splat 200!
