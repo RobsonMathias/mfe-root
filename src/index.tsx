@@ -14,12 +14,12 @@ declare global {
     }
 }
 
-const simulationInit = window.newrelic.interaction().createTracer('simulation', () => {
+const simulationInit = window.newrelic.interaction().createTracer('simulation-init_setup', () => {
     registerApplication('@mfe/simulation', SimulationAdapter,
         () => window.location.pathname.indexOf('/simulation') === 0);
 });
 
-const authenticationInit = window.newrelic.interaction().createTracer('authentication', () => {
+const authenticationInit = window.newrelic.interaction().createTracer('authentication-init_setup', () => {
     registerApplication('@mfe/authentication', AuthenticationAdapter, () => true, {
         httpRequest: new HttpRequestFacadeService()
     });
