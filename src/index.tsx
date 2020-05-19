@@ -8,17 +8,22 @@ declare global {
     interface Window {
         System: any;
         splitio: any;
+        newrelic: any;
         client: any;
         Location: any;
     }
 }
 
 window.client.on(window.client.Event.SDK_READY, () => {
-    registerApplication('@mfe/authentication', AuthenticationAdapter, () => true, {
-        httpRequest: new HttpRequestFacadeService()
+    window.newrelic.interaction().createTracer('@mfe/authentication', () => {
+        registerApplication('@mfe/authentication', AuthenticationAdapter, () => true, {
+            httpRequest: new HttpRequestFacadeService()
+        });
     });
-    registerApplication('@mfe/simulation', SimulationAdapter,
-        () => window.location.pathname.indexOf('/simulation') === 0);
+    window.newrelic.interaction().createTracer('@mfe/simulation', () => {
+        registerApplication('@mfe/simulation', SimulationAdapter,
+            () => window.location.pathname.indexOf('/simulation') === 0);
+    });
 });
 
 start();
