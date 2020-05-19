@@ -15,8 +15,11 @@ module.exports = {
         proxy = {
             ...proxy,
             '/authentication/': {
-                target: 'http://localhost:3001',
-            }
+                target: 'https://mfe-authentication.netlify.app',
+            },
+            // '/authentication/': {
+            //     target: 'http://localhost:3001',
+            // }
         };
         const config = configFunction(proxy, allowedHost);
         config.disableHostCheck = true;
