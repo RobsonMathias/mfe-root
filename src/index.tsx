@@ -14,16 +14,20 @@ declare global {
     }
 }
 
+const simulationInit = window.newrelic.interaction().createTracer('simulation', () => {
+    registerApplication('@mfe/simulation', SimulationAdapter,
+        () => window.location.pathname.indexOf('/simulation') === 0);
+});
+
+const authenticationInit = window.newrelic.interaction().createTracer('authentication', () => {
+    registerApplication('@mfe/authentication', AuthenticationAdapter, () => true, {
+        httpRequest: new HttpRequestFacadeService()
+    });
+});
+
 window.client.on(window.client.Event.SDK_READY, () => {
-    window.newrelic.interaction().createTracer('@mfe/authentication', function myCallback () {
-        registerApplication('@mfe/authentication', AuthenticationAdapter, () => true, {
-            httpRequest: new HttpRequestFacadeService()
-        });
-    })();
-    window.newrelic.interaction().createTracer('@mfe/simulation', function myCallback () {
-        registerApplication('@mfe/simulation', SimulationAdapter,
-            () => window.location.pathname.indexOf('/simulation') === 0);
-    })();
+    authenticationInit();
+    simulationInit();
 });
 
 start();
