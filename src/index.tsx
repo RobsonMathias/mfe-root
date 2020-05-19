@@ -15,13 +15,15 @@ declare global {
 }
 
 window.client.on(window.client.Event.SDK_READY, () => {
-    window.newrelic.interaction().createTracer('@mfe/authentication', (e: any) => console.log(e));
-    registerApplication('@mfe/authentication', AuthenticationAdapter, () => true, {
-        httpRequest: new HttpRequestFacadeService()
+    window.newrelic.startSegment('@mfe/authentication', false, (e: any) => {
+        registerApplication('@mfe/authentication', AuthenticationAdapter, () => true, {
+            httpRequest: new HttpRequestFacadeService()
+        });
     });
-    window.newrelic.interaction().createTracer('@mfe/simulation', (e: any) => console.log(e));
-    registerApplication('@mfe/simulation', SimulationAdapter,
-        () => window.location.pathname.indexOf('/simulation') === 0);
+    window.newrelic.startSegment('@mfe/simulation', false, (e: any) => {
+        registerApplication('@mfe/simulation', SimulationAdapter,
+            () => window.location.pathname.indexOf('/simulation') === 0);
+    });
 });
 
 start();
